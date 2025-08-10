@@ -50,3 +50,14 @@ Set fso = Nothing
 
 Debug.Print "Text written to file successfully."
 End Function
+
+
+function FrontEndUpdator_Sub()
+
+
+with sheet1
+    .range("A1:A10").interior.color =255
+    .range("B1:B10") = now()
+end with
+
+end function
