@@ -1,0 +1,52 @@
+Option Explicit
+
+Sub HttpGetExample()
+    Dim http As Object
+    Dim url As String
+    Dim Response As String
+    
+    ' Create the request object
+    Set http = CreateObject("MSXML2.XMLHTTP")
+    
+    ' API endpoint (example)
+    url = "https://www.thomasnet.com/suppliers/search?cov=NA&heading=60310604"
+    
+    ' Open the request (GET method)
+    http.Open "GET", url, False
+    http.send
+    
+    ' Get the response text
+    Response = http.responseText
+    
+    ' Output result
+    MsgBox Response
+End Sub
+
+
+
+Function WriteToFileFSO(textToWrite As Variant)
+Dim fso As Object
+Dim txtFile As Object
+Dim filePath As String
+
+
+' Set the file path
+filePath = ThisWorkbook.path & "\file.txt"
+
+Set fso = CreateObject("Scripting.FileSystemObject")
+
+' Create a new text file or overwrite if it already exists
+Set txtFile = fso.CreateTextFile(filePath, True)
+
+' Write text to the file
+txtFile.WriteLine textToWrite
+
+' Close the file
+txtFile.Close
+
+' Cleanup
+Set txtFile = Nothing
+Set fso = Nothing
+
+Debug.Print "Text written to file successfully."
+End Function
